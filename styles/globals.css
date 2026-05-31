@@ -1,0 +1,202 @@
+@import "tailwindcss";
+
+/* ------------------------------------------------------------------ *
+ *  Matrix / terminal design tokens
+ *  Tailwind v4 reads these and generates utilities: bg-bg, text-matrix,
+ *  border-edge, etc. Edit a value here to re-skin the whole site.
+ * ------------------------------------------------------------------ */
+@theme {
+  --color-bg: #050807;
+  --color-bg-soft: #0a0f0d;
+  --color-surface: #0b1310;
+  --color-surface-2: #0f1a14;
+  --color-edge: #173a26;
+  --color-edge-soft: #102a1b;
+
+  --color-matrix: #00ff7f;
+  --color-matrix-bright: #7cffb8;
+  --color-matrix-dim: #0d7a44;
+  --color-amber: #ffce6a;
+  --color-cyan: #54e6ff;
+  --color-magenta: #ff5edb;
+
+  --color-text: #d6ffe6;
+  --color-text-muted: #6f9d82;
+  --color-text-faint: #3c5a48;
+
+  --font-mono: var(--font-jetbrains), ui-monospace, "SF Mono", "Menlo",
+    "Cascadia Code", "Fira Code", monospace;
+
+  --animate-blink: blink 1.1s steps(1) infinite;
+  --animate-flicker: flicker 4s linear infinite;
+  --animate-scan: scan 7s linear infinite;
+}
+
+@keyframes blink {
+  0%,
+  50% {
+    opacity: 1;
+  }
+  50.01%,
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes flicker {
+  0%,
+  19%,
+  21%,
+  23%,
+  25%,
+  54%,
+  56%,
+  100% {
+    opacity: 1;
+  }
+  20%,
+  24%,
+  55% {
+    opacity: 0.55;
+  }
+}
+
+@keyframes scan {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(100vh);
+  }
+}
+
+/* ------------------------------------------------------------------ *
+ *  Base
+ * ------------------------------------------------------------------ */
+* {
+  border-color: var(--color-edge);
+}
+
+html {
+  scroll-behavior: smooth;
+  background: var(--color-bg);
+  color-scheme: dark;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+body {
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-mono);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+/* Subtle vignette + grid so empty space never reads as flat black */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(
+      ellipse 80% 60% at 50% -10%,
+      rgba(0, 255, 127, 0.08),
+      transparent 60%
+    ),
+    linear-gradient(rgba(0, 255, 127, 0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 255, 127, 0.025) 1px, transparent 1px);
+  background-size: 100% 100%, 44px 44px, 44px 44px;
+}
+
+::selection {
+  background: var(--color-matrix);
+  color: var(--color-bg);
+}
+
+/* Thin matrix scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-bg);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-edge);
+  border-radius: 0;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-matrix-dim);
+}
+
+/* ------------------------------------------------------------------ *
+ *  Reusable presentational helpers
+ * ------------------------------------------------------------------ */
+.text-glow {
+  text-shadow:
+    0 0 4px rgba(0, 255, 127, 0.6),
+    0 0 18px rgba(0, 255, 127, 0.35);
+}
+
+.box-glow {
+  box-shadow:
+    0 0 0 1px rgba(0, 255, 127, 0.18),
+    0 0 28px -8px rgba(0, 255, 127, 0.45),
+    inset 0 0 40px -30px rgba(0, 255, 127, 0.6);
+}
+
+/* CRT scanline overlay; respects reduced-motion (handled in component) */
+.scanlines::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0) 0px,
+    rgba(0, 0, 0, 0) 2px,
+    rgba(0, 0, 0, 0.18) 3px,
+    rgba(0, 0, 0, 0) 4px
+  );
+  mix-blend-mode: multiply;
+}
+
+/* Terminal window chrome */
+.terminal {
+  background: linear-gradient(
+    180deg,
+    rgba(11, 19, 16, 0.92),
+    rgba(5, 8, 7, 0.92)
+  );
+  border: 1px solid var(--color-edge);
+  border-radius: 10px;
+  backdrop-filter: blur(8px);
+}
+
+.terminal-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--color-edge);
+  background: rgba(0, 255, 127, 0.03);
+}
+
+.dot {
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
