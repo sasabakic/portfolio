@@ -96,6 +96,25 @@ export type Project = {
 
 export const projects: Project[] = [
   {
+    name: "ATS",
+    domain: "HR Tech · Recruitment",
+    summary:
+      "A feature-heavy applicant tracking and selection tool for recruiters — by far the most complex of these, spanning the full stack from data model to UI.",
+    role: "Full-Stack Engineer",
+    stack: [
+      "Next.js",
+      "React",
+      "styled-components",
+      "Apollo",
+      "Redux",
+      "Symfony",
+      "Doctrine",
+      "MySQL",
+      "Memcached",
+    ],
+    nda: false,
+  },
+  {
     name: "Infostud CRM",
     domain: "Internal Tooling · CRM",
     summary:
@@ -111,25 +130,6 @@ export const projects: Project[] = [
       "A public job-listing platform focused on the IT industry, connecting candidates with tech companies across the region.",
     role: "Frontend Developer",
     stack: ["Next.js", "React", "Tailwind CSS", "Apollo", "Redux"],
-    nda: false,
-  },
-  {
-    name: "ATS",
-    domain: "HR Tech · Recruitment",
-    summary:
-      "A feature-heavy applicant tracking and selection tool for recruiters — by far the most complex of the three, spanning the full stack from data model to UI.",
-    role: "Full-Stack Engineer",
-    stack: [
-      "Next.js",
-      "React",
-      "styled-components",
-      "Apollo",
-      "Redux",
-      "Symfony",
-      "Doctrine",
-      "MySQL",
-      "Memcached",
-    ],
     nda: false,
   },
   {
