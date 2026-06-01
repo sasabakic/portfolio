@@ -18,7 +18,7 @@ const MatrixRain = dynamic(() => import("@/components/MatrixRain"), {
   ssr: false,
 });
 
-const SITE_URL = "https://your-domain.com"; // TODO: set your deployed URL
+const SITE_URL = "https://sasabakic.dev";
 const title = `${profile.name} — ${profile.roles[0]}`;
 const description = `${profile.name} is a ${profile.roles[0]} working across React & TypeScript on the frontend and Symfony & PHP on the backend. ${profile.tagline}`;
 
@@ -35,7 +35,7 @@ export default function Home() {
     email: `mailto:${profile.email}`,
     url: SITE_URL,
     address: { "@type": "PostalAddress", addressLocality: profile.location },
-    knowsAbout: ["React", "TypeScript", "Next.js", "Symfony", "PHP", "Node.js"],
+    knowsAbout: ["React", "Next.js", "TypeScript", "Symfony", "PHP", "GraphQL"],
     sameAs: [profile.social.github, profile.social.linkedin, profile.social.twitter].filter(
       Boolean,
     ),
