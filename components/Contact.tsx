@@ -66,14 +66,16 @@ export default function Contact() {
             ))}
           </ul>
 
-          <a
-            href={profile.resumeUrl}
-            download
-            className="mt-6 inline-flex items-center gap-2 rounded-md border border-matrix bg-matrix/10 px-5 py-2.5 font-medium text-matrix transition hover:bg-matrix/20"
-          >
-            <Download className="h-4 w-4" />
-            Download résumé (PDF)
-          </a>
+          {profile.resumeUrl && (
+            <a
+              href={profile.resumeUrl}
+              download
+              className="mt-6 inline-flex items-center gap-2 rounded-md border border-matrix bg-matrix/10 px-5 py-2.5 font-medium text-matrix transition hover:bg-matrix/20"
+            >
+              <Download className="h-4 w-4" />
+              Download résumé (PDF)
+            </a>
+          )}
         </TerminalWindow>
       </Reveal>
 

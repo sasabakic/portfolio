@@ -94,14 +94,16 @@ export default function Hero({ onOpenTerminal }: { onOpenTerminal?: () => void }
             <ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" />
           </button>
 
-          <a
-            href={profile.resumeUrl}
-            download
-            className="inline-flex items-center gap-2 rounded-md border border-edge px-5 py-2.5 text-text transition hover:border-matrix hover:text-matrix"
-          >
-            <Download className="h-4 w-4" />
-            Download CV
-          </a>
+          {profile.resumeUrl && (
+            <a
+              href={profile.resumeUrl}
+              download
+              className="inline-flex items-center gap-2 rounded-md border border-edge px-5 py-2.5 text-text transition hover:border-matrix hover:text-matrix"
+            >
+              <Download className="h-4 w-4" />
+              Download CV
+            </a>
+          )}
 
           {onOpenTerminal && (
             <button

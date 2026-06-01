@@ -142,8 +142,8 @@ export default function InteractiveTerminal({
       case "projects":
         push(
           projects.map((p) => (
-            <div key={p.codename}>
-              <span className="text-cyan">{p.codename}</span>{" "}
+            <div key={p.name}>
+              <span className="text-cyan">{p.name}</span>{" "}
               <span className="text-text-faint">— {p.domain}</span>
               {p.nda && <span className="ml-2 text-amber">[NDA]</span>}
             </div>
@@ -173,6 +173,10 @@ export default function InteractiveTerminal({
         break;
       case "resume":
       case "cv": {
+        if (!profile.resumeUrl) {
+          push([<span key="r" className="text-amber">résumé not available right now.</span>]);
+          break;
+        }
         const a = document.createElement("a");
         a.href = profile.resumeUrl;
         a.download = "";
@@ -183,7 +187,8 @@ export default function InteractiveTerminal({
       case "ls":
         push([
           <span key="ls" className="text-text-muted">
-            {SECTIONS.map((s) => s.id).join("  ")}  resume.pdf
+            {SECTIONS.map((s) => s.id).join("  ")}
+            {profile.resumeUrl ? "  resume.pdf" : ""}
           </span>,
         ]);
         break;

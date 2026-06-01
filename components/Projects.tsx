@@ -13,20 +13,20 @@ export default function Projects() {
 
       <Reveal delay={0.05}>
         <p className="mb-8 max-w-2xl text-sm text-text-muted">
-          <span className="text-amber"># note:</span> several of these were under
-          NDA — client and product names are redacted, but my role and the work I
-          shipped are described accurately.
+          <span className="text-amber"># note:</span> a mix of internal and
+          public products I&apos;ve shipped. Kept intentionally high-level —
+          role and stack, no internals.
         </p>
       </Reveal>
 
       <div className="grid gap-5 lg:grid-cols-2">
         {projects.map((project, i) => (
-          <Reveal key={project.codename} delay={i * 0.07}>
-            <TerminalWindow title={`${project.codename.toLowerCase().replace(/\s+/g, "_")}.proj`} className="h-full">
+          <Reveal key={project.name} delay={i * 0.07}>
+            <TerminalWindow title={`${project.name.toLowerCase().replace(/[^a-z0-9]+/g, "_").replace(/^_|_$/g, "")}.proj`} className="h-full">
               <div className="flex items-start justify-between gap-3">
                 <div>
                   <h3 className="text-lg font-semibold text-matrix text-glow">
-                    {project.codename}
+                    {project.name}
                   </h3>
                   <p className="text-xs uppercase tracking-wider text-cyan">
                     {project.domain}
@@ -48,14 +48,16 @@ export default function Projects() {
                 role: <span className="text-text">{project.role}</span>
               </p>
 
-              <ul className="mt-3 space-y-2 text-sm">
-                {project.contributions.map((c) => (
-                  <li key={c} className="flex gap-2 text-text">
-                    <ChevronRight className="mt-0.5 h-4 w-4 shrink-0 text-matrix" />
-                    <span>{c}</span>
-                  </li>
-                ))}
-              </ul>
+              {project.contributions && project.contributions.length > 0 && (
+                <ul className="mt-3 space-y-2 text-sm">
+                  {project.contributions.map((c) => (
+                    <li key={c} className="flex gap-2 text-text">
+                      <ChevronRight className="mt-0.5 h-4 w-4 shrink-0 text-matrix" />
+                      <span>{c}</span>
+                    </li>
+                  ))}
+                </ul>
+              )}
 
               <div className="mt-5 flex flex-wrap gap-2 border-t border-edge pt-4">
                 {project.stack.map((tech) => (

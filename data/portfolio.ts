@@ -1,37 +1,32 @@
 /* ------------------------------------------------------------------ *
  *  PORTFOLIO CONTENT — edit everything here.
- *  All placeholder copy is marked with TODO. Replace with your details.
  * ------------------------------------------------------------------ */
 
 export const profile = {
-  // TODO: your real name
   name: "Saša Bakić",
   handle: "sasa", // used as the terminal user (e.g. sasa@portfolio:~$)
-  // TODO: tweak roles — these rotate in the hero typewriter
+  // these rotate in the hero typewriter
   roles: [
     "Full-Stack Engineer",
-    "Frontend Developer",
-    "React Specialist",
+    "Next.js / React Developer",
     "Symfony / PHP Developer",
   ],
-  // TODO: one-line tagline
   tagline: "I build fast, accessible interfaces and the APIs behind them.",
-  // TODO: short bio (about section). Keep it punchy.
   bio: [
-    "Frontend developer turned full-stack engineer. I started in the browser — React, TypeScript, design systems — and grew into owning features end to end, from Symfony APIs and database schemas to the pixels users actually touch.",
-    "I care about performance, clean abstractions, and shipping things that don't break at 2am. Comfortable across the stack, happiest where product and engineering meet.",
+    "Frontend developer turned full-stack engineer. I started out working with React and TypeScript on the frontend, then got interested in the backend and grew into owning features end to end — from Symfony APIs and database schemas to the interface users actually interact with.",
+    "I care about performance, clean abstractions, and shipping things that hold up in production. Comfortable across the stack, and most useful where product and engineering overlap.",
   ],
-  location: "Serbia", // TODO
-  availability: "Open to interesting work", // TODO
-  email: "sasa.bakic@infostud.com", // TODO
+  location: "Subotica, Serbia",
+  availability: "Open to interesting work",
+  email: "sasabakiic@outlook.com",
   social: {
-    // TODO: replace with your real profiles (leave "" to hide a link)
-    github: "https://github.com/your-handle",
-    linkedin: "https://www.linkedin.com/in/your-handle",
+    github: "https://github.com/sasabakic",
+    linkedin: "https://www.linkedin.com/in/sasabakic",
     twitter: "",
   },
-  // Path to your CV in /public. Drop your real PDF at public/resume.pdf
-  resumeUrl: "/resume.pdf",
+  // Path to your CV in /public. Set to "/resume.pdf" once you drop the file in,
+  // and the download buttons / commands re-appear automatically. "" hides them.
+  resumeUrl: "",
 };
 
 // Tier reflects how you actually work with a tool — not a made-up percentage.
@@ -48,11 +43,15 @@ export const skillGroups: SkillGroup[] = [
     icon: "layout",
     skills: [
       { name: "React", tier: "core" },
+      { name: "Next.js", tier: "core" },
       { name: "TypeScript", tier: "core" },
-      { name: "HTML / CSS / a11y", tier: "core" },
+      { name: "HTML / CSS", tier: "core" },
       { name: "Tailwind CSS", tier: "core" },
-      { name: "Next.js", tier: "proficient" },
-      { name: "Redux / Zustand", tier: "proficient" },
+      { name: "styled-components", tier: "proficient" },
+      { name: "Apollo Client (GraphQL)", tier: "proficient" },
+      { name: "Redux / Redux Toolkit", tier: "proficient" },
+      { name: "Framer Motion", tier: "familiar" },
+      { name: "Sass / SCSS", tier: "familiar" },
     ],
   },
   {
@@ -61,10 +60,13 @@ export const skillGroups: SkillGroup[] = [
     skills: [
       { name: "Symfony", tier: "core" },
       { name: "PHP", tier: "core" },
+      { name: "GraphQL", tier: "core" },
       { name: "REST APIs", tier: "core" },
       { name: "Doctrine ORM", tier: "proficient" },
       { name: "MySQL / PostgreSQL", tier: "proficient" },
-      { name: "Node.js", tier: "familiar" },
+      { name: "Memcached", tier: "proficient" },
+      { name: "RabbitMQ", tier: "familiar" },
+      { name: "Elasticsearch", tier: "familiar" },
     ],
   },
   {
@@ -72,9 +74,10 @@ export const skillGroups: SkillGroup[] = [
     icon: "terminal",
     skills: [
       { name: "Git", tier: "core" },
-      { name: "Vite / Webpack", tier: "proficient" },
       { name: "Docker", tier: "proficient" },
-      { name: "Testing (Jest/PHPUnit)", tier: "proficient" },
+      { name: "Vite / Webpack", tier: "proficient" },
+      { name: "Testing (Jest / PHPUnit)", tier: "familiar" },
+      { name: "Playwright", tier: "familiar" },
       { name: "CI/CD", tier: "familiar" },
       { name: "Cloudflare", tier: "familiar" },
     ],
@@ -82,57 +85,97 @@ export const skillGroups: SkillGroup[] = [
 ];
 
 export type Project = {
-  codename: string; // anonymized name (NDA-safe)
+  name: string; // product name, or an anonymized codename for NDA work
   domain: string; // industry / type of product
-  summary: string; // what the product was, generically
+  summary: string; // what the product is
   role: string;
-  contributions: string[]; // what YOU did — safe to disclose
+  contributions?: string[]; // optional: what YOU did — safe to disclose
   stack: string[];
   nda: boolean;
 };
 
 export const projects: Project[] = [
   {
-    codename: "Project Atlas",
-    domain: "B2B SaaS · Logistics",
+    name: "Infostud CRM",
+    domain: "Internal Tooling · CRM",
     summary:
-      "A multi-tenant platform for managing operations at scale, used daily by hundreds of internal users.",
-    role: "Full-Stack Engineer",
-    contributions: [
-      "Rebuilt the core dashboard in React + TypeScript, cutting initial load time by ~40%.",
-      "Designed and shipped Symfony REST endpoints powering real-time data tables.",
-      "Introduced a shared component library that standardized UI across 3 product areas.",
-    ],
-    stack: ["React", "TypeScript", "Symfony", "MySQL", "Docker"],
-    nda: true,
-  },
-  {
-    codename: "Project Helios",
-    domain: "Consumer Web · Fintech",
-    summary:
-      "A customer-facing web app handling sensitive transactions with strict performance and accessibility budgets.",
+      "An internal platform used company-wide for sales, account management, customer support, and day-to-day operations.",
     role: "Frontend Developer",
-    contributions: [
-      "Owned the checkout flow end to end, improving conversion through UX and perf work.",
-      "Implemented WCAG-compliant components and keyboard navigation across the app.",
-      "Integrated the frontend with a Symfony backend and third-party payment APIs.",
+    stack: ["React", "Redux Toolkit", "styled-components"],
+    nda: false,
+  },
+  {
+    name: "helloworld.rs",
+    domain: "Consumer Web · IT Job Platform",
+    summary:
+      "A public job-listing platform focused on the IT industry, connecting candidates with tech companies across the region.",
+    role: "Frontend Developer",
+    stack: ["Next.js", "React", "Tailwind CSS", "Apollo", "Redux"],
+    nda: false,
+  },
+  {
+    name: "ATS",
+    domain: "HR Tech · Recruitment",
+    summary:
+      "A feature-heavy applicant tracking and selection tool for recruiters — by far the most complex of the three, spanning the full stack from data model to UI.",
+    role: "Full-Stack Engineer",
+    stack: [
+      "Next.js",
+      "React",
+      "styled-components",
+      "Apollo",
+      "Redux",
+      "Symfony",
+      "Doctrine",
+      "MySQL",
+      "Memcached",
     ],
-    stack: ["React", "Next.js", "Tailwind", "REST", "PHP"],
+    nda: false,
+  },
+  {
+    name: "Tools Webshop",
+    domain: "E-commerce · Client work",
+    summary:
+      "An online store for tools and equipment, covering catalog browsing, cart, and checkout.",
+    role: "Frontend Developer",
+    stack: ["React", "Redux", "Sass"],
     nda: true,
   },
   {
-    codename: "Project Orbit",
-    domain: "Internal Tooling",
+    name: "Crypto Insights",
+    domain: "Fintech · Crypto",
     summary:
-      "A suite of internal tools that replaced manual spreadsheet workflows for an operations team.",
-    role: "Full-Stack Engineer",
-    contributions: [
-      "Modeled the domain in Doctrine and built CRUD + reporting APIs in Symfony.",
-      "Built data-heavy React views with virtualized tables and CSV export.",
-      "Set up CI and Dockerized the dev environment for the team.",
-    ],
-    stack: ["Symfony", "Doctrine", "React", "TypeScript", "CI/CD"],
-    nda: false,
+      "A cryptocurrency analytics platform with market data, charts, and an expert's predictions and analyses.",
+    role: "Frontend Developer",
+    stack: ["React", "Redux", "Recharts", "Sass"],
+    nda: true,
+  },
+  {
+    name: "Delivery App",
+    domain: "Mobile · Logistics",
+    summary:
+      "A cross-platform mobile app for on-demand delivery.",
+    role: "Frontend Developer",
+    stack: ["React Native", "Expo"],
+    nda: true,
+  },
+  {
+    name: "Materials Marketplace",
+    domain: "Mobile · Marketplace",
+    summary:
+      "A cross-platform mobile marketplace app for building and construction materials.",
+    role: "Frontend Developer",
+    stack: ["React Native", "Expo"],
+    nda: true,
+  },
+  {
+    name: "Clinic Website",
+    domain: "Healthcare · Presentational",
+    summary:
+      "A presentational marketing website for a medical clinic.",
+    role: "Frontend Developer",
+    stack: ["React", "Sass"],
+    nda: true,
   },
 ];
 
@@ -147,24 +190,24 @@ export type Job = {
 export const experience: Job[] = [
   {
     role: "Full-Stack Engineer",
-    company: "Current Company", // TODO
-    period: "2023 — Present",
-    location: "Hybrid",
+    company: "Infostud",
+    period: "Apr 2023 — Present",
+    location: "Subotica, Serbia · Hybrid",
     points: [
-      "Expanded from frontend into full-stack, owning features across React and Symfony.",
-      "Ship and maintain production APIs alongside the interfaces that consume them.",
-      "Collaborate with product and design to turn requirements into shipped software.",
+      "Build and ship full-stack features across React / Next.js frontends and Symfony / PHP APIs.",
+      "Rotated through product teams — an internal CRM, the helloworld.rs job platform, and currently an applicant tracking system (ATS).",
+      "Work closely with product and design to take features from requirements to production.",
     ],
   },
   {
-    role: "Frontend Developer",
-    company: "Previous Company", // TODO
-    period: "2021 — 2023",
-    location: "On-site",
+    role: "Frontend Developer → Team Lead",
+    company: "Concordsoft Solutions",
+    period: "Aug 2021 — Mar 2023",
+    location: "Subotica, Serbia · On-site",
     points: [
-      "Built and maintained React/TypeScript applications used by thousands of users.",
-      "Drove adoption of a component library and improved frontend performance.",
-      "Partnered with backend engineers to design clean, typed API contracts.",
+      "Delivered web and mobile frontends for international clients in an outsourcing setup.",
+      "Built presentational websites and e-commerce webshops with a focus on responsive, pixel-accurate UI.",
+      "Grew into a Team Lead / Project Manager role, coordinating delivery and mentoring developers.",
     ],
   },
 ];

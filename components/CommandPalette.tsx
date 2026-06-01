@@ -67,20 +67,22 @@ export default function CommandPalette({
         },
         keywords: "shell bash cli command",
       },
-      {
-        id: "resume",
-        label: "Download résumé (PDF)",
-        hint: "download",
-        icon: Download,
-        run: () => {
-          setOpen(false);
-          const a = document.createElement("a");
-          a.href = profile.resumeUrl;
-          a.download = "";
-          a.click();
-        },
-        keywords: "cv resume",
-      },
+      profile.resumeUrl
+        ? {
+            id: "resume",
+            label: "Download résumé (PDF)",
+            hint: "download",
+            icon: Download,
+            run: () => {
+              setOpen(false);
+              const a = document.createElement("a");
+              a.href = profile.resumeUrl;
+              a.download = "";
+              a.click();
+            },
+            keywords: "cv resume",
+          }
+        : false,
       { id: "email", label: "Send an email", hint: "link", icon: Mail, run: open_(`mailto:${profile.email}`) },
       profile.social.github
         ? {
