@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { X } from "lucide-react";
+import { CornerDownLeft, X } from "lucide-react";
 import { profile, skillGroups, projects, experience } from "@/data/portfolio";
 import { SECTIONS, scrollToSection } from "@/lib/utils";
 
@@ -20,7 +20,7 @@ const HELP: [string, string][] = [
   ["whoami", "who is this guy"],
   ["about", "print bio"],
   ["skills", "list the tech stack"],
-  ["projects", "list projects (NDA-safe)"],
+  ["projects", "list projects"],
   ["experience", "print work history"],
   ["contact / social", "ways to reach me"],
   ["resume", "download my CV"],
@@ -145,7 +145,6 @@ export default function InteractiveTerminal({
             <div key={p.name}>
               <span className="text-cyan">{p.name}</span>{" "}
               <span className="text-text-faint">— {p.domain}</span>
-              {p.nda && <span className="ml-2 text-amber">[NDA]</span>}
             </div>
           )),
         );
@@ -231,14 +230,19 @@ export default function InteractiveTerminal({
     }
   };
 
+  const submit = () => {
+    run(value);
+    if (value.trim()) {
+      setHistory((h) => [...h, value]);
+    }
+    setHistIdx(-1);
+    setValue("");
+    inputRef.current?.focus();
+  };
+
   const onKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter") {
-      run(value);
-      if (value.trim()) {
-        setHistory((h) => [...h, value]);
-      }
-      setHistIdx(-1);
-      setValue("");
+      submit();
     } else if (e.key === "ArrowUp") {
       e.preventDefault();
       setHistory((h) => {
@@ -320,9 +324,19 @@ export default function InteractiveTerminal({
                   onKeyDown={onKeyDown}
                   spellCheck={false}
                   autoComplete="off"
+                  enterKeyHint="send"
                   aria-label="Terminal input"
                   className="ml-0 flex-1 bg-transparent text-text caret-matrix focus:outline-none"
                 />
+                <button
+                  type="button"
+                  onClick={submit}
+                  aria-label="Run command"
+                  className="ml-2 flex shrink-0 items-center gap-1 rounded border border-edge px-2 py-1 text-xs text-text-muted transition hover:border-matrix hover:text-matrix lg:hidden"
+                >
+                  <CornerDownLeft className="h-3.5 w-3.5" />
+                  enter
+                </button>
               </div>
             </div>
           </motion.div>

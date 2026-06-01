@@ -1,4 +1,5 @@
-import { Lock, ChevronRight } from "lucide-react";
+import { ChevronRight } from "lucide-react";
+// import { Lock } from "lucide-react"; // re-enable with the NDA badge below
 import { projects } from "@/data/portfolio";
 import SectionHeading from "@/components/SectionHeading";
 import TerminalWindow from "@/components/TerminalWindow";
@@ -32,12 +33,12 @@ export default function Projects() {
                     {project.domain}
                   </p>
                 </div>
-                {project.nda && (
+                {/* {project.nda && (
                   <span className="inline-flex shrink-0 items-center gap-1 rounded border border-amber/40 bg-amber/10 px-2 py-1 text-[10px] font-medium uppercase tracking-wider text-amber">
                     <Lock className="h-3 w-3" />
                     NDA
                   </span>
-                )}
+                )} */}
               </div>
 
               <p className="mt-4 text-sm leading-relaxed text-text-muted">
