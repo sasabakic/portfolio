@@ -52,6 +52,7 @@ export const skillGroups: SkillGroup[] = [
       { name: "Redux / Redux Toolkit", tier: "proficient" },
       { name: "Framer Motion", tier: "familiar" },
       { name: "Sass / SCSS", tier: "familiar" },
+      { name: "Google Analytics (GA4)", tier: "familiar" },
     ],
   },
   {
